@@ -1,11 +1,13 @@
 package com.example.java9;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class TryWithResource {
 
-    void beforeJava9() throws FileNotFoundException {
+    void beforeJava9() {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader("/hello.txt"))) {
             String line;
             while(null!=(line = bufferedReader.readLine())) {
