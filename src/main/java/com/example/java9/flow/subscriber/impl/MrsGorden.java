@@ -7,7 +7,7 @@ public class MrsGorden extends NewsLetterSubscriber {
 
     @Override
     public void behavior(NewsLetter item) {
-        switch (item.field()) {
+        switch (item.category()) {
             case ECONOMY -> {
                 read(item);
                 save(item);

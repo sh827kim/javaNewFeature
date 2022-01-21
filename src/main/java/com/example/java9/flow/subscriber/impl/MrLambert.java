@@ -8,7 +8,7 @@ public class MrLambert extends NewsLetterSubscriber {
 
     @Override
     public void behavior(NewsLetter item) {
-        switch (item.field()) {
+        switch (item.category()) {
             case TECHNOLOGY, SPORTS, ENTERTAINMENTS -> {
                 read(item);
                 save(item);

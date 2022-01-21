@@ -26,14 +26,14 @@ public class FlowExample {
         while(!newsLetterPublisher.isClosed()) {
             /* 랜덤으로 뉴스 데이터를 가져와서 발행. */
             var newsLetter = newsLetterList.get(random.nextInt(randomRange));
-            newsLetterPublisher.submit(new NewsLetter(LocalDateTime.now(), newsLetter.field(), newsLetter.author(), newsLetter.title()));
+            newsLetterPublisher.submit(new NewsLetter(LocalDateTime.now(), newsLetter.category(), newsLetter.author(), newsLetter.title()));
 
             Thread.sleep(10);
 
             /* Exception 발생으로 인해 구독 해지가 된 구독자는 다시 구독 처리 */
             subscribers.stream().filter(subscriber -> !newsLetterPublisher.isSubscribed(subscriber))
                     .forEach(unsubscribed -> {
-                        System.out.println("Reclaim subscription for " + unsubscribed.getClass().getName());
+                        System.out.println("=========== Reclaim subscription for " + unsubscribed.getClass().getName() + " ===========");
                         newsLetterPublisher.subscribe(unsubscribed);
                     });
 
@@ -50,16 +50,16 @@ public class FlowExample {
     }
 
     private static List<NewsLetter> getNewsLetterList() {
-        return List.of(new NewsLetter(LocalDateTime.now(), NewsLetter.Field.ECONOMY, "Anderson", "Another key inflation measure hit a record high"),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.TECHNOLOGY, "Kreig", "The Rising Technology, WEB 3.0"),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.POLITICS, "Adams", "Inflation, vaccines, voting rights: Biden faces brick walls"),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.SPORTS, "Lopez", "Yeon-koung Kim was selected as the MVP"),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.ENTERTAINMENTS, "Winter", "Ariana Grande's New Song released."),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.ECONOMY, "Stone", "Bitcoin falling again."),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.POLITICS, "Wilbert", "Biden and Democrats run up against relentless conservative power."),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.TECHNOLOGY, "Kreig", "Robotics world is comming, CES 2022."),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.SPORTS, "Kim", "Menchester United lost to Tottenham"),
-                new NewsLetter(LocalDateTime.now(), NewsLetter.Field.ENTERTAINMENTS, "Richard", "Avata 2 crank in!")
+        return List.of(new NewsLetter(LocalDateTime.now(), NewsLetter.Category.ECONOMY, "Anderson", "Another key inflation measure hit a record high"),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.TECHNOLOGY, "Kreig", "The Rising Technology, WEB 3.0"),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.POLITICS, "Adams", "Inflation, vaccines, voting rights: Biden faces brick walls"),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.SPORTS, "Lopez", "Yeon-koung Kim was selected as the MVP"),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.ENTERTAINMENTS, "Winter", "Ariana Grande's New Song released."),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.ECONOMY, "Stone", "Bitcoin falling again."),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.POLITICS, "Wilbert", "Biden and Democrats run up against relentless conservative power."),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.TECHNOLOGY, "Kreig", "Robotics world is comming, CES 2022."),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.SPORTS, "Kim", "Menchester United lost to Tottenham"),
+                new NewsLetter(LocalDateTime.now(), NewsLetter.Category.ENTERTAINMENTS, "Richard", "Avata 2 crank in!")
         );
 
     }
