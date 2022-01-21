@@ -21,7 +21,7 @@ public class MailBox {
         }
 
         savedLetters.offer(item);
-        System.out.println("[SAVE] Mail Saved. Remaining Capacity : "+ (MAIL_BOX_MAX_SIZE- savedLetters.size()));
+        System.out.println("[SAVE] Mail Saved. Capacity : "+ savedLetters.size() + "/" + MAIL_BOX_MAX_SIZE );
     }
 
     public void removeOldestLetter() {
